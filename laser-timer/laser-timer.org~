@@ -1,0 +1,23 @@
+* LASER TIMER
+** Descrizione
+Implementazione di un timer composto da:
+- Fotoresistenza
+- Fascio laser puntato sulla fotoresistenza
+- Display contatore in centesimi di secondo
+
+Il timer si resetta quando il fascio laser puntato sulla fotoresistenza s
+interrompe.
+Dopo il reset il timer indica lo scorrere del tempo sul display.
+Se il sistema è attivo all'interruzione del fascio laser vengono salvati i 
+centesimi di secondo trascorsi dall'ultimo reset, vengono mostrati a video per 
+XX secondi o cicli fatto questo il sistema reinizia a indicare il tempo.
+** Step di progetto
+*** TODO Implementare una lettura del tempo
+*** Implementare il reset del timer tramite fotoresistenza
+*** Implementare il flusso di startup/debug
+In fase di starup il sistema testa il funzionamanto della fotoresistenza 
+richiedendo che venga disattivato e attivato per 3 volte il fascio laser.
+Fatto questo il sistem si mette in attesa della prima interuzzione del 
+fascio laser per iniziare il conteggio
+*** Implementare la visualizzazione del tempo che scorre sul display
+*** Implementare la visualizzazione del tempo trascorso dall'ultima interruzione
