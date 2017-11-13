@@ -6,9 +6,9 @@
 LiquidCrystal lcd( 7, 6, 5, 4, 3, 2 );
 
 int cycleDelay = 5; // Millisecondi di delay
-int cycleCounter = 0; // Contatore cicli
-int startTimeMillis = 0;
-int timeMillis = 0;
+long cycleCounter = 0; // Contatore cicli
+long startTimeMillis = 0;
+long timeMillis = 0;
 
 int lightSensorPin=A0;
 int lightSensorValue = 0;
