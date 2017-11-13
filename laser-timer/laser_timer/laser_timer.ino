@@ -7,11 +7,13 @@ LiquidCrystal lcd( 7, 6, 5, 4, 3, 2 );
 
 int cycleDelay = 5; // Millisecondi di delay
 int cycleCounter = 0; // Contatore cicli
+int startTimeMillis = 0;
+int timeMillis = 0;
 
 int lightSensorPin=A0;
 int lightSensorValue = 0;
 
-int lightSensorSwitchLevel = 500;
+int lightSensorSwitchLevel = 300;
 
 int numberCyclesToShowTime = 50;
 
@@ -82,6 +84,9 @@ void setup() {
   lcd.setCursor(0,1);
   lcd.print("Curr time:");
 
+  // Reset timer
+  startTimeMillis = millis();
+  timeMillis = startTimeMillis;
 }
 
 void loop() {
@@ -91,12 +96,13 @@ void loop() {
   //Serial.print("Count : ");
   //Serial.print(cycleCounter);
   //Serial.println(".");
-  
+  timeMillis = millis();
+ 
   // Read light sensor
   lightSensorValue = analogRead(lightSensorPin);
-  // Serial.print("Ligth sensor : ");
-  // Serial.print(lightSensorValue);
-  // Serial.println(".");
+  Serial.print("Ligth sensor : ");
+  Serial.print(lightSensorValue);
+  Serial.println(".");
   // Check if sensor is on or off
   int lightSensorStatus = 1;
    
@@ -106,7 +112,8 @@ void loop() {
     waitLigthSensorOn = 0;
   
   // Calcolo dei secondi
-  float cycleSeconds = ((float)cycleCounter)/(2*100);
+  float cycleSeconds = ((float)(timeMillis-startTimeMillis))/1000;
+  
   Serial.print("Seconds : ");
   Serial.print(cycleSeconds);
   Serial.print( " - laser switch value");
@@ -120,6 +127,8 @@ void loop() {
   
   if( lightSensorStatus==0 && waitLigthSensorOn==0 ) {
     cycleCounter=0;
+    startTimeMillis = millis();
+    timeMillis = startTimeMillis;
     waitLigthSensorOn = 1;
     lastLapTime = cycleSeconds;
   }
