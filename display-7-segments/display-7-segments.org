@@ -1,0 +1,35 @@
+* 7 Segments Display
+Management of a 7 segments led diplay
+
+    121110 9 8 7         
+     | | | | | |
+.----.----.----.----.
+|.--.|.--.|.--.|.--.|
+||  |||  |||  |||  ||
+|:--:|:--:|:--:|:--||
+||  |||  |||  |||  ||
+|'--'|'--'|'--'|'--'|
+'----'----'----'----'
+     | | | | | |
+     1 2 3 4 5 6
+
+Connection to arduino pins
+| Arduino pin | Diplay pin | Notes |
+|-------------+------------+-------|
+| D2          | 11         |       |
+| D3          | 7          |       |
+| D4          | 4          |       |
+| D5          | 2          |       |
+| D6          | 1          |       |
+| D7          | 10         |       |
+| D8          | 5          |       |
+| A2          | 3          | (D9)  |
+| A3          | 6          | (D10) |
+| A4          | 8          | (D11) |
+| A5          | 9          | (D12) |
+| A6          | 12         | (D13) |
+|             |            |       |
+
+** Test program
+A program that show the seconds (in cents of seconds, so with a dot for decimals) 
+passed from the startup.
