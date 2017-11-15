@@ -27,9 +27,14 @@ Connection to arduino pins
 | A3          | 6          | (D10) |
 | A4          | 8          | (D11) |
 | A5          | 9          | (D12) |
-| A6          | 12         | (D13) |
+| A1          | 12         | (D13) |
 |             |            |       |
 
 ** Test program
 A program that show the seconds (in cents of seconds, so with a dot for decimals) 
 passed from the startup.
+** TODO Reduce flikering
+Try to reduce flikering and display more defined numbers
+** TODO Understand why not all the Analog pins are working
+When I try to conect the numeber selector to analog pin A6 or A7 
+of an arduino nano it seems they do not trasmit current

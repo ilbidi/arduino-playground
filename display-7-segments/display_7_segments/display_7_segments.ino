@@ -3,21 +3,21 @@
 */
 
 // Pin used managed as the part of the led numbers( a,b, ..)
-int a = 7;
-int b = 3;
-int c = 4;
-int d = 5;
-int e = 6;
-int f = 2;
+int a = 5;
+int b = 4;
+int c = 3;
+int d = 2;
+int e = 7;
+int f = 6;
 int g = 8;
 int p = A2;
 int d4 = A3;
 int d3 = A4;
 int d2 = A5;
-int d1 = A6;
+int d1 =  A1; // A7;
 
 // Delay of loop in milliseconds
-int loopDelay = 5;
+int loopDelay = 10;
 
 // Startup milliseconds
 long startupTime=0;
@@ -49,13 +49,29 @@ void loop() {
   // Display passed milliseconds as cents of seconds with 2 digits
   displayTime((long)(currentTime-startupTime));
   
+  
 }
 
 void displayTime(long passedTime) {
-  int n1 = (passedTime%10000)/1000;
-  int n2 = (passedTime%1000)/100;
-  int n3 = (passedTime%100)/10;
-  int n4 = passedTime%10;
+  int n1 = ((passedTime/10)%10000)/1000;
+  int n2 = ((passedTime/10)%1000)/100;
+  int n3 = ((passedTime/10)%100)/10;
+  int n4 = (passedTime/10)%10;
+  
+  pickDigit(0);
+  pickNumber(n1, false);
+  delay(2);
+  pickDigit(1);
+  pickNumber(n2, true);
+  delay(2);
+  pickDigit(2);
+  pickNumber(n3, false);
+  delay(2);
+  pickDigit(3);
+  pickNumber(n4, false);
+  delay(2);
+  
+  
 }
 
 void clearDisplay() {
@@ -99,11 +115,11 @@ void one(boolean digits) {
 
 void two(boolean digits) {
   digitalWrite(a, HIGH);
-  digitalWrite(b, HIGH);
-  digitalWrite(c, LOW);
+  digitalWrite(b, LOW);
+  digitalWrite(c, HIGH);
   digitalWrite(d, HIGH);
-  digitalWrite(e, HIGH);
-  digitalWrite(f, LOW);
+  digitalWrite(e, LOW);
+  digitalWrite(f, HIGH);
   digitalWrite(g, HIGH);
   if( digits )
     digitalWrite(p, HIGH);
@@ -130,8 +146,8 @@ void four(boolean digits) {
   digitalWrite(b, HIGH);
   digitalWrite(c, HIGH);
   digitalWrite(d, LOW);
-  digitalWrite(e, LOW);
-  digitalWrite(f, HIGH);
+  digitalWrite(e, HIGH);
+  digitalWrite(f, LOW);
   digitalWrite(g, HIGH);
   if( digits )
     digitalWrite(p, HIGH);
@@ -141,11 +157,11 @@ void four(boolean digits) {
 
 void five(boolean digits) {
   digitalWrite(a, HIGH);
-  digitalWrite(b, LOW);
-  digitalWrite(c, HIGH);
+  digitalWrite(b, HIGH);
+  digitalWrite(c, LOW);
   digitalWrite(d, HIGH);
-  digitalWrite(e, LOW);
-  digitalWrite(f, HIGH);
+  digitalWrite(e, HIGH);
+  digitalWrite(f, LOW);
   digitalWrite(g, HIGH);
   if( digits )
     digitalWrite(p, HIGH);
@@ -155,8 +171,8 @@ void five(boolean digits) {
 
 void six(boolean digits) {
   digitalWrite(a, HIGH);
-  digitalWrite(b, LOW);
-  digitalWrite(c, HIGH);
+  digitalWrite(b, HIGH);
+  digitalWrite(c, LOW);
   digitalWrite(d, HIGH);
   digitalWrite(e, HIGH);
   digitalWrite(f, HIGH);
@@ -168,11 +184,11 @@ void six(boolean digits) {
 } 
 
 void seven(boolean digits) {
-  digitalWrite(a, HIGH);
+  digitalWrite(a, LOW);
   digitalWrite(b, HIGH);
   digitalWrite(c, HIGH);
-  digitalWrite(d, LOW);
-  digitalWrite(e, LOW);
+  digitalWrite(d, HIGH);
+  digitalWrite(e, HIGH);
   digitalWrite(f, LOW);
   digitalWrite(g, LOW);
   if( digits )
@@ -201,8 +217,8 @@ void nine(boolean digits) {
   digitalWrite(b, HIGH);
   digitalWrite(c, HIGH);
   digitalWrite(d, HIGH);
-  digitalWrite(e, LOW);
-  digitalWrite(f, HIGH);
+  digitalWrite(e, HIGH);
+  digitalWrite(f, LOW);
   digitalWrite(g, HIGH);
   if( digits )
     digitalWrite(p, HIGH);
