@@ -33,8 +33,13 @@ Connection to arduino pins
 ** Test program
 A program that show the seconds (in cents of seconds, so with a dot for decimals) 
 passed from the startup.
-** TODO Reduce flikering
+** DONE Reduce flikering
 Try to reduce flikering and display more defined numbers
+<2017-11-18 Sat> Fixed by putting a 3 millisecs dealy between 
+switching of digits and by sennting to low all segments before displaying a 
+number (function clearDisplay)
+
 ** TODO Understand why not all the Analog pins are working
 When I try to conect the numeber selector to analog pin A6 or A7 
 of an arduino nano it seems they do not trasmit current
+Tested with 2 different Arduino Nano, the behaviour is the same.
