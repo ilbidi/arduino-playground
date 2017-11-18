@@ -23,6 +23,7 @@ int loopDelay = 10;
 long startupTime=0;
 
 void setup() {
+  Serial.begin(9600);
   
   pinMode(d1, OUTPUT);
   pinMode(d2, OUTPUT);
@@ -43,7 +44,7 @@ void setup() {
 void loop() {
   delay(loopDelay);
   long currentTime = millis();
-  if(currentTime-startupTime>10000)
+  if(currentTime-startupTime>1000000)
     startupTime=currentTime;
     
   // Display passed milliseconds as cents of seconds with 2 digits
@@ -53,24 +54,45 @@ void loop() {
 }
 
 void displayTime(long passedTime) {
+  int n0 = ((passedTime/10)%100000)/10000;
   int n1 = ((passedTime/10)%10000)/1000;
   int n2 = ((passedTime/10)%1000)/100;
   int n3 = ((passedTime/10)%100)/10;
   int n4 = (passedTime/10)%10;
   
+  int dly = 3;
+
+/*  
+  Serial.print("Passed time : ");
+  Serial.println(passedTime);
+  Serial.print("n0 : ");
+  Serial.println(n0);
+  Serial.print("n1 : ");
+  Serial.println(n1);
+  Serial.print("n2 : ");
+  Serial.println(n2);
+  Serial.print("n3 : ");
+  Serial.println(n3);
+  Serial.print("n4 : ");
+  Serial.println(n4);
+*/
+
+  clearDisplay();
   pickDigit(0);
-  pickNumber(n1, false);
-  delay(2);
+  pickNumber(n0, false);
+  delay(dly);
+  clearDisplay();
   pickDigit(1);
-  pickNumber(n2, true);
-  delay(2);
+  pickNumber(n1, false);
+  delay(dly);
+  clearDisplay();
   pickDigit(2);
-  pickNumber(n3, false);
-  delay(2);
+  pickNumber(n2, true);
+  delay(dly);
+  clearDisplay();
   pickDigit(3);
-  pickNumber(n4, false);
-  delay(2);
-  
+  pickNumber(n3, false);
+  delay(dly);
   
 }
 
